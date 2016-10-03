@@ -1,0 +1,7 @@
+<h1> Welcome to DANGER OVERDANGER</h1>
+
+<ul>
+  <% @questions.each do |question| %>
+  <li><%= link_to question.title, question %><br><%= question.question_text %></li>
+  <% end %>
+</ul>
