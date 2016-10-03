@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003171032) do
+ActiveRecord::Schema.define(version: 20161003204311) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "answer_text"
-    t.integer  "user_id"
-    t.integer  "question_id"
+    t.integer  "user_id",     null: false
+    t.integer  "question_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20161003171032) do
   create_table "comments", force: :cascade do |t|
     t.text     "comment_text"
     t.string   "commentable_type"
-    t.integer  "commentable_id"
-    t.integer  "user_id"
+    t.integer  "commentable_id",   null: false
+    t.integer  "user_id",          null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20161003171032) do
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.text     "question_text"
-    t.integer  "user_id"
+    t.integer  "user_id",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20161003171032) do
 
   create_table "votes", force: :cascade do |t|
     t.string   "votable_type"
-    t.integer  "votable_id"
-    t.integer  "user_id"
+    t.integer  "votable_id",   null: false
+    t.integer  "user_id",      null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
