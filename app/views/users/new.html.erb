@@ -1,6 +1,7 @@
+<%= render "partials/errors", locals: { errors: @errors } %>
 <%= form_for @user, {action: "create"} do |f| %>
   <%= f.text_field :email, placeholder: "email" %>
   <%= f.text_field :username, placeholder: "username" %>
-  <%= f.text_field :password, placeholder: "password" %>
+  <%= f.text_field :password, placeholder: "password", type: :password %>
   <%= f.submit "Create" %>
 <% end %>

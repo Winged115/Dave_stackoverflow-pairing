@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/users/new' => 'users#new'
   get '/users/:id' => 'users#show'
   post '/users' => 'users#create'
+
+  root to: 'questions#index'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
