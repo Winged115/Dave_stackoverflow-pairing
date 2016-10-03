@@ -1,32 +1,21 @@
 class AnswersController < ApplicationController
-  def index
-    @questions = Question.all
-    render :index
-  end
 
-  def show
-    @question = Question.find(params[:id])
-    render :show
-  end
-
-  def new
-    @question = Question.new
-    render :new
-  end
-
+# need to edit these methods to turn them into answers after breakout - or bo (body odor, yo)
   def create
-    @question = Question.new(question_params)
-    @question.user_id = session[:user_id]
-    if @question.save
+    @question = Question.find(params[:id])
+    @answer = Answer.new(answer_params)
+    @answer.assign_attributes(user_id: session[:user_id], question_id: @question.id)
+    if @answer.save
       redirect_to question_url(@question)
     else
-      @errors = @question.errors.full_messages
+      @errors = @answer.errors.full_messages
       render :new
     end
   end
 
   def edit
     @question = Question.find(params[:id])
+    @answer = Answer.find_by(id: params[:id], question_id: @question.id)
     render :edit
   end
 
@@ -41,14 +30,15 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    question = Question.find(params[:id])
-    question.destroy
-    redirect_to :root
+    answer = Answer.find(params[:id])
+    # authorize users
+    answer.destroy
+    redirect_to question_url(answer.question)
   end
 
   private
 
-  def question_params
-    params.require(:question).permit(:title, :question_text)
+  def answer_params
+    params.require(:answer).permit(:answer_text)
   end
 end
