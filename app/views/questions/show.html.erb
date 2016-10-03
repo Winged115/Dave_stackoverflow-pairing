@@ -6,7 +6,11 @@
 <!-- Question comments -->
 <!-- Question Answer Form Here -->
 <!-- Questions Answers shown here/Voting Needed -->
+<%= render partial:"partials/answers_show", locals: {
+  question: @question } %>
 <!-- Answer comment form here -->
+<% # binding.pry %>
+<%= render partial:"partials/form_answers", locals: { question: @question, answer: @answer, errors: @errors } %>
 <!-- SHow Answers Comments -->
 
 <p><%= link_to "Edit Question", edit_question_path(@question) %></p>

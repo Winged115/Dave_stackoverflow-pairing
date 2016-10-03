@@ -2,14 +2,14 @@ class AnswersController < ApplicationController
 
 # need to edit these methods to turn them into answers after breakout - or bo (body odor, yo)
   def create
-    @question = Question.find(params[:id])
     @answer = Answer.new(answer_params)
+    @question = Question.find(@answer.question.id)
     @answer.assign_attributes(user_id: session[:user_id], question_id: @question.id)
     if @answer.save
       redirect_to question_url(@question)
     else
       @errors = @answer.errors.full_messages
-      render :new
+      render "questions/show"
     end
   end
 
@@ -30,15 +30,15 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    answer = Answer.find(params[:id])
+    @answer = Answer.find(params[:id])
     # authorize users
-    answer.destroy
-    redirect_to question_url(answer.question)
+    @answer.destroy
+    redirect_to question_url(@answer.question)
   end
 
   private
 
   def answer_params
-    params.require(:answer).permit(:answer_text)
+    params.require(:answer).permit(:answer_text, :user_id, :question_id)
   end
 end
