@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root to: 'questions#index'
-  resources :questions
+  resources :questions do
+    resources :comments
+    resources :votes, except: [:show, :edit, :index]
+    resources :answers, except: [:show, :index]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
