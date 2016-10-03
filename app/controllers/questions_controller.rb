@@ -16,13 +16,28 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-
+    @question.user_id = session[:user_id]
+    if @question.save
+      redirect_to question_url(@question)
+    else
+      @errors = @question.errors.full_messages
+      render :new
+    end
   end
 
   def edit
+    @question = Question.find(params[:id])
+    render :edit
   end
 
   def update
+    @question = Question.find(params[:id])
+    if @question.update_attributes(question_params)
+      redirect_to question_url(@question)
+    else
+      @errors = @question.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy

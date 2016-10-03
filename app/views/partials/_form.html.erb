@@ -1,1 +1,7 @@
+<%= render "partials/errors", locals: { errors: @errors } %>
 
+<%= form_for @question do |f| %>
+  <%= f.text_field :title, placeholder: "Question title" %>
+  <%= f.text_area :question_text, placeholder: "Question body" %>
+  <%= f.submit "Submit" %>
+<% end %>
