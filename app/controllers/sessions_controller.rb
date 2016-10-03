@@ -20,5 +20,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    if session
+      session.delete(:user_id)
+      redirect_to :root
+    end
   end
 end
