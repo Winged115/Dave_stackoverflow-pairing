@@ -6,7 +6,11 @@ class AnswersController < ApplicationController
     @question = Question.find(@answer.question.id)
     @answer.assign_attributes(user_id: session[:user_id], question_id: @question.id)
     if @answer.save
-      redirect_to question_url(@question)
+      p format
+      respond_to do |format|
+        format.html { redirect_to question_url(@question)}
+        format.js
+      end
     else
       @errors = @answer.errors.full_messages
       render "questions/show"
