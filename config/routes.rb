@@ -1,16 +1,26 @@
 Rails.application.routes.draw do
   root to: 'questions#index'
-  resources :questions do
-    resources :comments, except: [:show, :index]
-    resources :votes, except: [:show, :edit, :index, :new]
-    resources :answers, except: [:new, :show, :index]
-  end
+  # resources :questions do
+  #   resources :comments, except: [:show, :index]
+  #   resources :votes, except: [:show, :edit, :index, :new]
+  #   resources :answers, except: [:new, :show, :index]
+  # end
   resources :answers do
     resources :comments, except: [:show, :index]
     resources :votes, except: [:show, :edit, :index, :new]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+
+  post '/questions/:id/answers' => 'answers#create', as: 'question_answers'
+
+  get '/questions' => 'questions#index'
+  get '/questions/new' => 'questions#new'
+  get '/questions/:id' => 'questions#show', as: 'question'
+  post '/questions' => 'questions#create'
+  get '/questions/:id/edit' => 'questions#edit', as: 'edit_question'
+  patch '/questions/:id' => 'questions#update'
+  delete '/questions/:id' => 'questions#destroy'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
