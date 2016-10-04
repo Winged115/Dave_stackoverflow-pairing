@@ -1,6 +1,6 @@
 <%= render "partials/errors", locals: { errors: errors } %>
 
-  <%= form_for([question, answer]) do |f| %>
+  <%= form_for([question, answer], remote: true) do |f| %>
   <%= f.hidden_field :question_id, value: question.id %>
   <%= f.hidden_field :user_id, value: session[:user_id] %>
   <%= f.text_area :answer_text %>

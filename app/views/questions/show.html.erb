@@ -5,11 +5,17 @@
 <!-- Question comments form here -->
 <!-- Question comments -->
 <!-- Question Answer Form Here -->
-<!-- Questions Answers shown here/Voting Needed -->
-<%= render partial:"partials/answers_show", locals: {
-  question: @question } %>
-<!-- Answer comment form here -->
+<div class="answer-form">
 <%= render partial:"partials/form_answers", locals: { question: @question, answer: @answer, errors: @errors } %>
+</div>
+<!-- Questions Answers shown here/Voting Needed -->
+<div class="answers">
+  <ul>
+    <%= render partial:"partials/answers_show", locals: {
+  question: @question } %>
+  </ul>
+</div>
+<!-- Answer comment form here -->
 <!-- SHow Answers Comments -->
 
 <p><%= link_to "Edit Question", edit_question_path(@question) %></p>
