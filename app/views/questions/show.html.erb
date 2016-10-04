@@ -1,6 +1,14 @@
 <h3><%= @question.title %></h3><br><br>
 
-<p><%= @question.question_text %>
+<p><%= @question.question_text %></p>
+
+<% if @question.tags %>
+  <h5>Tags:
+    <% @question.question_tags.each do |tag| %>
+      <%= tag %>  
+    <% end %>
+  </h5>
+<% end %>
 <!-- QUESTION VOTES NEEDED -->
 <!-- Question comments form here -->
 <!-- Question comments -->
