@@ -1,3 +1,8 @@
 $(".answers-list").append('<li>' + '<%= @answer.answer_text %>' + '</li>');
 $(".new_answer").find("textarea").val('')
 $(".new_answer").find("textarea").focus();
+//--MUST create a .js.erb file with the path of the method as its name.
+
+//--give it the ajax requests you want within this file.
+//--apparently don't need to use the actual AJAX call in this case.
+//-- MUST HAVE AN application.js with a _ujs, which stands for unobtrusive js.
