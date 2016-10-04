@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root to: 'questions#index'
-  resources :questions do
-    resources :comments, except: [:show, :index]
-    resources :votes, except: [:show, :edit, :index, :new]
-    resources :answers, except: [:new, :show, :index]
-  end
+  # resources :questions do
+  #   resources :comments, except: [:show, :index]
+  #   resources :votes, except: [:show, :edit, :index, :new]
+  #   resources :answers, except: [:new, :show, :index]
+  # end
   resources :answers do
     resources :comments, except: [:show, :index]
     resources :votes, except: [:show, :edit, :index, :new]
@@ -14,6 +14,13 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  get '/questions' => 'questions#index'
+  get '/questions/:id' => 'questions#show', as: "question_path"
+  get '/questions/new' => 'questions#new'
+  get '/questions/:id/edit' => 'questions#edit'
+  post '/questions' => 'questions#create'
+  patch '/questions' => 'questions#update'
+  delete '/questions/:id' => 'questions#destroy'
 
   get '/users/new' => 'users#new'
   get '/users/:id' => 'users#show'
